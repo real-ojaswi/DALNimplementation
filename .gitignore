@@ -1,0 +1,11 @@
+*.h5
+MNIST-M
+*.pkl
+*.gz
+keras_mnistm
+__pycache__/
+*.txt
+*.pyc
+DALNCustom-Copy1.ipynb
+DALNCustom-RandomRotation.ipynb
+.ipynb_checkpoints/
