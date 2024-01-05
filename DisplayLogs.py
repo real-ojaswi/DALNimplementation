@@ -3,25 +3,23 @@ import pandas as pd
 import tensorflow as tf
 from sklearn.metrics import accuracy_score
 from DALNModel import Model
-from DALNtrain import train
 class display_logs():
-    def __init__(self, X_source, y_source, batch_size=64, epochs=20, model=Model(), X_target=None, y_target=None,
-                 source_only=False):
+    def __init__(self, X_source, y_source, X_target=None, y_target=None, model=Model(),
+                 source_only=False, epochs=None):
         self.model = model
-        self.epochs = epochs
-        self.batch_size = batch_size
         self.X_source = X_source
         self.y_source = y_source
         self.X_target = X_target
         self.y_target = y_target
         self.source_only = source_only
-        self.trainer = train(X_source=self.X_source, y_source=self.y_source, model=self.model, batch_size=32,
-                             X_target=self.X_target, epochs=self.epochs, source_only=self.source_only)
+        self.epochs= epochs
+        self.y_predicted_prob_source = None
+        self.y_predicted_prob_target = None
+
+    def accuracy(self):
         self.y_predicted_prob_source = self.model.predict_label(self.X_source)
         if self.X_target is not None:
             self.y_predicted_prob_target = self.model.predict_label(self.X_target)
-
-    def accuracy(self):
         y_predicted_source = np.argmax(self.y_predicted_prob_source, axis=1)
         accuracy_score_source = accuracy_score(y_predicted_source, self.y_source)
         if self.y_target is not None and self.X_target is not None:
@@ -37,7 +35,9 @@ class display_logs():
         import matplotlib.pyplot as plt
         from sklearn.manifold import TSNE
         import numpy as np
+        self.y_predicted_prob_source = self.model.predict_label(self.X_source[0:20000])
         if self.X_target is not None:
+            self.y_predicted_prob_target = self.model.predict_label(self.X_target[0:20000])
             inter_features = tf.concat([self.y_predicted_prob_source, self.y_predicted_prob_target], axis=0)
         else:
             inter_features = self.y_predicted_prob_source
@@ -47,9 +47,9 @@ class display_logs():
 
         # plotting
         if self.X_target is not None:
-            colors = ['blue'] * len(self.X_source) + ['red'] * len(self.X_target)
+            colors = ['blue'] * 20000 + ['red'] * 20000
         else:
-            colors = ['blue'] * len(self.X_source)
+            colors = ['blue'] * 15000
         plt.figure(figsize=(8, 6))
         scatter = plt.scatter(
             projected_features[:, 0],
@@ -111,9 +111,9 @@ class display_logs():
 
         # plotting
         if self.X_target is not None:
-            colors = ['blue'] * len(self.X_source) + ['red'] * len(self.X_target)
+            colors = ['blue'] * 5000 + ['red'] * 5000
         else:
-            colors = ['blue'] * len(self.X_source)
+            colors = ['blue'] * 5000
         plt.figure(figsize=(8, 6))
         scatter = plt.scatter(
             projected_features[:, 0],

@@ -22,11 +22,11 @@ class Model():
         ])
 
         self.label_predictor = Sequential([
-            tf.keras.layers.Dense(100),
+            tf.keras.layers.Dense(264),
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.Activation('relu'),
             # tf.keras.layers.Dropout(0.5),
-            tf.keras.layers.Dense(100),
+            tf.keras.layers.Dense(128),
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.Activation('relu'),
             # tf.keras.layers.Dropout(0.5),
@@ -37,10 +37,6 @@ class Model():
 
         self.lp_optimizer = tf.keras.optimizers.legacy.SGD(learning_rate=0.005, decay=0.001, momentum=0.9)
         self.fe_optimizer = tf.keras.optimizers.legacy.SGD(learning_rate=0.0005, decay=0.001, momentum=0.9)
-
-
-
-
 
 
     @tf.function
@@ -94,4 +90,5 @@ class Model():
             del tape1
 
             return lp_loss
+
 
