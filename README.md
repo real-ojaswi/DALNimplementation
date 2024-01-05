@@ -7,5 +7,5 @@ The results shows significant increase in accuracy when its trained using DALN.
 
 |Method|Source accuracy|Target accuracy|
 |-----|----------------|---------------|
-|Source only|0.992|0.22|
-|DALN|0.946|0.806|
+|Source only|0.9998|0.417|
+|DALN|0.9341|0.838|
