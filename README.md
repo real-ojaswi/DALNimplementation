@@ -10,6 +10,7 @@ The results shows significant increase in accuracy when its trained using DALN.
 |Source only|0.9998|0.417|
 |DALN|0.9341|0.838|
 
+
 ### In order to train the model, follow the following procedure:
 •	First import MNIST dataset and USPS dataset and resize them to 32x32x3 to make them compatible with the model.
 •	Import Model from DALNModel.py and initialize it.
@@ -34,6 +35,4 @@ https://github.com/xiaoachen98/DALN
 •	The rest of the codes have been created by the author.
 ### Datasets
 MNIST and USPS dataset have been used for this project. They both consist of a set of handwritten digits from 0 to 9. They are of small sizes and have enough samples to carry out this experiment. Also, they have considerable differences in the samples, that makes them suited for this project. MNIST dataset was imported from tensorflow.keras.datasets.mnist and USPS dataset was imported from extra_keras.usps.
-
-
 
