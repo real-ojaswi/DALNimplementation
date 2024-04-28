@@ -10,6 +10,20 @@ The results shows significant increase in accuracy when its trained using DALN.
 |Source only|0.9998|0.417|
 |DALN|0.9341|0.838|
 
+TSNE at the last level of feature extractor without Using DALN (the two dataset look clearly separated):
+![download](https://github.com/thenoobcoderr/DALNimplementation/assets/139956609/acdaf4fc-2fd7-4479-b3f8-f1a4aad53783)
+
+TSNE at the last level of feature extractor using DALN (similar features from two datasets are extracted):
+![download](https://github.com/thenoobcoderr/DALNimplementation/assets/139956609/d31ee3e1-92c7-48ba-8a47-b1e76751ca3a)
+
+As the paper claims, DALN also shows diversity and determinacy in the prediction. Diversity shows the performance of the model for different classes. Determinacy shows the confidence of prediction. If the prediction is made with greater than 90% prediction, it is counted as a determinate prediction.
+
+![Diversity](https://github.com/thenoobcoderr/DALNimplementation/assets/139956609/814aaa46-f36d-43db-a8c6-a138d73b33bd)
+
+
+![determinacy](https://github.com/thenoobcoderr/DALNimplementation/assets/139956609/6cae349a-e86f-4d44-be34-b2806113cfb7)
+
+
 
 ### In order to train the model, follow the following procedure:
 •	First import MNIST dataset and USPS dataset and resize them to 32x32x3 to make them compatible with the model.
